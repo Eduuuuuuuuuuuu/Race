@@ -1,0 +1,4 @@
+﻿  ModulePlayer.cpp
+C:\Users\Edu\Documents\GitHub\fisica2\RACE\race\Physics II - Bullet3D - Handout 06 (1)\ModulePlayer.cpp(213,99): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\Edu\Documents\GitHub\fisica2\RACE\race\Physics II - Bullet3D - Handout 06 (1)\ModulePlayer.cpp(213,72): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
+  3D Physics.vcxproj -> C:\Users\Edu\Documents\GitHub\fisica2\RACE\race\Physics II - Bullet3D - Handout 06 (1)\Debug\3D Physics - class6.exe
