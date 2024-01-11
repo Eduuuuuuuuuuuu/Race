@@ -34,5 +34,7 @@ public:
 	float brake;
 	float friccion;
 
+	vec3 initialPosition;
+
 	bool isBoosting;
 };

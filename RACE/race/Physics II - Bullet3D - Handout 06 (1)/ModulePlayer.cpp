@@ -21,8 +21,6 @@ bool ModulePlayer::Start()
 {
 	LOG("Loading player");
 
-	
-
 	// Car properties ----------------------------------------
 	car.chassis_size.Set(2, 2, 4);
 	car.chassis_offset.Set(0, 1.5, 0);
@@ -118,6 +116,17 @@ bool ModulePlayer::CleanUp()
 // Update: draw background
 update_status ModulePlayer::Update(float dt)
 {
+
+	if (App->input->GetKey(SDL_SCANCODE_R) == KEY_DOWN)
+	{
+		btVector3 cero(0, 0, 0);
+
+		vehicle->body->setAngularVelocity(cero);
+		vehicle->body->setLinearVelocity(cero);
+
+		vehicle->SetPos(0, 0, 0);
+	}
+
 	/*vec3 pos = GetPosition();*/
 	vehicle->GetKmh();
 	turn = acceleration = brake = deacceleration = 0.0f;
@@ -162,9 +171,9 @@ update_status ModulePlayer::Update(float dt)
 	}
 	
 	// Calcular la resistencia del aire (arrastre)
-	//float speed = vehicle->GetKmh();
-	//float dragForce = -FRICCION_COEFICIENT * speed * speed;
-	//vehicle->ApplyEngineForce(dragForce);
+	float speed = vehicle->GetKmh();
+	float dragForce = -FRICCION_COEFICIENT * speed * speed;
+	vehicle->ApplyEngineForce(dragForce);
 
 	if (App->input->GetKey(SDL_SCANCODE_F) == KEY_DOWN)
 	{
