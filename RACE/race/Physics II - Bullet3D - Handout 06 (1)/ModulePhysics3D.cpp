@@ -1,3 +1,4 @@
+
 #include "Globals.h"
 #include "Application.h"
 #include "ModulePhysics3D.h"
@@ -65,6 +66,47 @@ bool ModulePhysics3D::Start()
 		btRigidBody* body = new btRigidBody(rbInfo);
 		world->addRigidBody(body);
 	}
+
+	// Create a triangular ramp to go from the ground to the path
+	btVector3 vertices[3] = {
+		btVector3(0, 0, 0),
+		btVector3(5, 0, 0),
+		btVector3(2.5, 5, 0) // Adjust the height of the triangle as needed
+	};
+
+	// Create a ramp using a rotated rectangle
+	btCollisionShape* rampShape = new btBoxShape(btVector3(5, 1, 2)); // Adjust the size as needed
+
+	btTransform rampTransform;
+	rampTransform.setIdentity();
+	rampTransform.setRotation(btQuaternion(btVector3(0, 0, 1), SIMD_RADS_PER_DEG * 20.0)); // Rotate around Z axis by 45 degrees
+	rampTransform.setOrigin(btVector3(-5, 1, 0)); // Adjust the position as needed
+
+	btDefaultMotionState* rampMotionState = new btDefaultMotionState(rampTransform);
+	btRigidBody::btRigidBodyConstructionInfo rampRbInfo(0.0f, rampMotionState, rampShape); // Set mass to 0.0f
+
+	btRigidBody* rampBody = new btRigidBody(rampRbInfo);
+	rampBody->setCollisionFlags(btCollisionObject::CF_STATIC_OBJECT); // Set the collision flag to static
+	world->addRigidBody(rampBody);
+
+	//path de rectangulos
+
+	for (int i = 0; i < 5; ++i)
+	{
+		btCollisionShape* blockShape = new btBoxShape(btVector3(5, 1, 2)); // Adjust the size as needed
+
+		btTransform blockTransform;
+		blockTransform.setIdentity();
+		blockTransform.setOrigin(btVector3(i * 5, 1, 0)); // Adjust the position as needed
+
+		btDefaultMotionState* blockMotionState = new btDefaultMotionState(blockTransform);
+		btRigidBody::btRigidBodyConstructionInfo blockRbInfo(0.0f, blockMotionState, blockShape); // Set mass to 0.0f
+
+		btRigidBody* blockBody = new btRigidBody(blockRbInfo);
+		blockBody->setCollisionFlags(btCollisionObject::CF_STATIC_OBJECT); // Set the collision flag to static
+		world->addRigidBody(blockBody);
+	}
+		
 
 	return true;
 }

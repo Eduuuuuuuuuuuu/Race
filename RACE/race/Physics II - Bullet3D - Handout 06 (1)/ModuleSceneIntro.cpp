@@ -54,10 +54,22 @@ update_status ModuleSceneIntro::Update(float dt)
 	
 	p.Render();
 
-	Cube c(2, 2, 2);
-	c.Render();
-	c.SetPos(2, 2, 0);
-	c.color = { 200,0,0 };
+	Cube a(10, 2, 4);
+
+	a.SetPos(-5, 1, 0);
+	a.SetRotation(20, { 0, 0, 1 });
+	a.color = { 200,200,200 };
+	a.Render();
+
+	for (int i = 0; i < 5; i++)
+	{
+		Cube c(10, 2, 4);
+		
+		c.SetPos(i * 5, 1, 0);
+		c.color = { 200,200,200 };
+		c.Render();
+	}
+	
 
 	return UPDATE_CONTINUE;
 }
