@@ -25,6 +25,8 @@ ModulePhysics3D::ModulePhysics3D(Application* app, bool start_enabled) : Module(
 	broad_phase = new btDbvtBroadphase();
 	solver = new btSequentialImpulseConstraintSolver();
 	debug_draw = new DebugDrawer();
+
+	gravedadActual = GRAVITY;
 }
 
 // Destructor
@@ -53,7 +55,7 @@ bool ModulePhysics3D::Start()
 
 	world = new btDiscreteDynamicsWorld(dispatcher, broad_phase, solver, collision_conf);
 	world->setDebugDrawer(debug_draw);
-	world->setGravity(GRAVITY);
+	world->setGravity(gravedadActual);
 	vehicle_raycaster = new btDefaultVehicleRaycaster(world);
 
 	// Big plane as ground
@@ -154,6 +156,7 @@ update_status ModulePhysics3D::PreUpdate(float dt)
 // ---------------------------------------------------------
 update_status ModulePhysics3D::Update(float dt)
 {
+
 	if(App->input->GetKey(SDL_SCANCODE_F1) == KEY_DOWN)
 		debug = !debug;
 
@@ -176,6 +179,18 @@ update_status ModulePhysics3D::Update(float dt)
 			float force = 30.0f;
 			AddBody(s)->Push(-(App->camera->Z.x * force), -(App->camera->Z.y * force), -(App->camera->Z.z * force));
 		}
+	}
+
+	if (App->input->GetKey(SDL_SCANCODE_Z) == KEY_DOWN)
+	{
+		gravedadActual -= btVector3(0.0f, 1.0f, 0.0f);
+		world->setGravity(gravedadActual);
+	}
+
+	if (App->input->GetKey(SDL_SCANCODE_X) == KEY_DOWN)
+	{
+		gravedadActual -= btVector3(0.0f, -1.0f, 0.0f);
+		world->setGravity(gravedadActual);
 	}
 
 	return UPDATE_CONTINUE;
