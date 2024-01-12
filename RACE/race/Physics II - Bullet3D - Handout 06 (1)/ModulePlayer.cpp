@@ -219,7 +219,9 @@ void ModulePlayer::OnCollision(PhysBody3D* body1, PhysBody3D* body2)
 {
 	// Randomly teleport the sensor cube around 1st quadrant
 	
-	if (body2 == App->scene_intro->sensor_cube)	body2->SetPos(20 * rand() / RAND_MAX, 3, 20 * rand() / RAND_MAX);
+	if (body2 == App->scene_intro->sensor_cube1) App->scene_intro->sensor_cube1->SetPos(1000, 1000, 1000);
+	if (body2 == App->scene_intro->sensor_cube2) App->scene_intro->sensor_cube2->SetPos(1000, 1000, 1000);
+	if (body2 == App->scene_intro->sensor_cube3) App->scene_intro->sensor_cube3->SetPos(1000, 1000, 1000);
 	/*if (body2 == App->scene_intro.);*/
 }
 

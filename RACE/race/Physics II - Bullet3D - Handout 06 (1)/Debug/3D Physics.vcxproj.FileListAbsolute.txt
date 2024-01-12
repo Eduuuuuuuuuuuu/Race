@@ -2,3 +2,6 @@ C:\Users\34628\Downloads\Physics II - Bullet3D - Handout 06 (1)\Debug\3D Physics
 C:\Users\Edu\Desktop\race-20240110T154544Z-001\race\Physics II - Bullet3D - Handout 06 (1)\Debug\3D Physics - class6.exe
 C:\Users\Edu\Documents\GitHub\fisica2\RACE\race\Physics II - Bullet3D - Handout 06 (1)\Debug\3D Physics - class6.exe
 C:\Users\Edu\Documents\GitHub\Race\RACE\race\Physics II - Bullet3D - Handout 06 (1)\Debug\3D Physics - class6.exe
+C:\Users\34628\Downloads\Race-main\Race-main\RACE\race\Physics II - Bullet3D - Handout 06 (1)\Debug\3D Physics - class6.exe
+C:\Users\34628\Downloads\hola\fisica2\Race-main\Race-main\RACE\race\Physics II - Bullet3D - Handout 06 (1)\Debug\3D Physics - class6.exe
+C:\Users\34628\Downloads\hola\fisica2\Race\RACE\race\Physics II - Bullet3D - Handout 06 (1)\Debug\3D Physics - class6.exe
