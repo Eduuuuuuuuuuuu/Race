@@ -24,8 +24,9 @@ bool ModuleSceneIntro::Start()
 
 
 
-
-
+	meta = App->physics->AddBody(Cube(5, 5, 20), 0.0);
+	meta->SetAsSensor(true);
+	meta->SetPos(30, 3, 6);
 
 	sensor_cube1 = App->physics->AddBody(Cube(5, 5, 5), 0.0);
 	sensor_cube1->SetAsSensor(true);
@@ -33,22 +34,25 @@ bool ModuleSceneIntro::Start()
 
 	sensor_cube2 = App->physics->AddBody(Cube(5, 5, 5), 0.0);
 	sensor_cube2->SetAsSensor(true);
-	sensor_cube2->SetPos(5, 3, 6);
+	sensor_cube2->SetPos(10, 3, 6);
 
 	sensor_cube3 = App->physics->AddBody(Cube(5, 5, 5), 0.0);
 	sensor_cube3->SetAsSensor(true);
-	sensor_cube3->SetPos(10, 3, 6);
+	sensor_cube3->SetPos(20, 3, 6);
 
 	d.Scale(5, 5, 5);
 	d.SetPos(0, 3, 6);
 
 	aa.Scale(5, 5, 5);
 
-	aa.SetPos(5, 3, 6);
+	aa.SetPos(10, 3, 6);
 
 	aaa.Scale(5, 5, 5);
 
-	aaa.SetPos(10, 3, 6);
+	aaa.SetPos(20, 3, 6);
+
+	metaColor.Scale(5, 5, 20);
+	metaColor.SetPos(30, 3, 6);
 
 	return ret;
 }
@@ -110,7 +114,7 @@ update_status ModuleSceneIntro::Update(float dt)
 		aa.SetPos(1000, 1000, 1000);
 	}
 	else {
-		aa.SetPos(5, 3, 6);
+		aa.SetPos(10, 3, 6);
 	}
 
 
@@ -121,8 +125,12 @@ update_status ModuleSceneIntro::Update(float dt)
 		aaa.SetPos(1000, 1000, 1000);
 	}
 	else {
-		aaa.SetPos(10, 3, 6);
+		aaa.SetPos(20, 3, 6);
 	}
+	// color meta
+	metaColor.color = { 0, 255, 0 };
+	metaColor.Render();
+
 
 	return UPDATE_CONTINUE;
 }

@@ -42,14 +42,14 @@ public:
 	PhysMotor3D* left_wheel;
 	PhysMotor3D* right_wheel;
 
-
+	PhysBody3D* meta;
 	PhysBody3D* sensor_cube1;
 	PhysBody3D* sensor_cube2;
 	PhysBody3D* sensor_cube3;
-	PhysBody3D* sensor_cube4;
-	PhysBody3D* sensor_cube5;
+	
 
 	Cube d;
 	Cube aa;
 	Cube aaa;
+	Cube metaColor;
 };

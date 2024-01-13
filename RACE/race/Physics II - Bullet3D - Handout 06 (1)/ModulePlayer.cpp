@@ -211,6 +211,16 @@ update_status ModulePlayer::Update(float dt)
 	sprintf_s(title, "%.1f Km/h", vehicle->GetKmh());
 	App->window->SetTitle(title);
 
+	if (App->scene_intro->sensor_cube1->GetPosition().y == 1000 && App->scene_intro->sensor_cube2->GetPosition().y == 1000 && App->scene_intro->sensor_cube3->GetPosition().y == 1000 && meta == true)
+	{
+		if (lap == 2) lap = 3;
+		if (lap == 1) lap = 2;
+		if (lap == 0) lap = 1;
+		App->scene_intro->sensor_cube1->SetPos(0,3,6);
+		App->scene_intro->sensor_cube2->SetPos(10, 3, 6);
+		App->scene_intro->sensor_cube3->SetPos(20, 3, 6);
+	}
+
 	return UPDATE_CONTINUE;
 }
 
@@ -219,9 +229,10 @@ void ModulePlayer::OnCollision(PhysBody3D* body1, PhysBody3D* body2)
 {
 	// Randomly teleport the sensor cube around 1st quadrant
 	
-	if (body2 == App->scene_intro->sensor_cube1) App->scene_intro->sensor_cube1->SetPos(1000, 1000, 1000);
+	if (body2 == App->scene_intro->sensor_cube1) App->scene_intro->sensor_cube1->SetPos(1000, 1000, 1000); meta = false;
 	if (body2 == App->scene_intro->sensor_cube2) App->scene_intro->sensor_cube2->SetPos(1000, 1000, 1000);
 	if (body2 == App->scene_intro->sensor_cube3) App->scene_intro->sensor_cube3->SetPos(1000, 1000, 1000);
+	if (body2 == App->scene_intro->meta) meta = true;
 	/*if (body2 == App->scene_intro.);*/
 }
 
