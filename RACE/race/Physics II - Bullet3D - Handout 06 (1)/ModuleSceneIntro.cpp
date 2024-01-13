@@ -54,6 +54,30 @@ bool ModuleSceneIntro::Start()
 	metaColor.Scale(5, 5, 20);
 	metaColor.SetPos(30, 3, 6);
 
+	cube3 = App->physics->AddBody(Cube(30, 5, 8), 0.0);
+	cube3->SetPos(15, 1, 0);
+	cube3 = App->physics->AddBody(Cube(30, 5, 8), 0.0);
+	cube3->SetPos(42, 1, 2);
+	cube3 = App->physics->AddBody(Cube(8, 5, 30), 0.0);
+	cube3->SetPos(53, 1, 20);
+	cube3 = App->physics->AddBody(Cube(15, 5, 8), 0.0);
+	cube3->SetPos(42, 1, 28);
+	cube3 = App->physics->AddBody(Cube(8, 5, 20), 0.0);
+	cube3->SetPos(32, 1, 34);
+	cube3 = App->physics->AddBody(Cube(18, 5, 8), 0.0);
+	cube3->SetPos(25, 1, 42);
+	cube3 = App->physics->AddBody(Cube(8, 4, 15), 0.0);
+	cube3->SetPos(17, 1, 30);
+	cube3 = App->physics->AddBody(Cube(15, 3, 8), 0.0);
+	cube3->SetPos(10, 1, 25);
+	cube3 = App->physics->AddBody(Cube(8, 3, 20), 0.0);
+	cube3->SetPos(5, 1, 38);
+	cube3 = App->physics->AddBody(Cube(40, 3, 8), 0.0);
+	cube3->SetPos(-10, 1, 52);
+	cube3 = App->physics->AddBody(Cube(8, 3, 40), 0.0);
+	cube3->SetPos(-30, 1, 37);
+
+
 	return ret;
 }
 

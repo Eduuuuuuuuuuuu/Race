@@ -43,6 +43,7 @@ public:
 	PhysMotor3D* right_wheel;
 
 	PhysBody3D* meta;
+	PhysBody3D* cube3;
 	PhysBody3D* sensor_cube1;
 	PhysBody3D* sensor_cube2;
 	PhysBody3D* sensor_cube3;
