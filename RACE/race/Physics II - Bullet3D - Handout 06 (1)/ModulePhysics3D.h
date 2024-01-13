@@ -34,6 +34,7 @@ public:
 
 	void AddConstraintP2P(PhysBody3D& bodyA, PhysBody3D& bodyB, const vec3& anchorA, const vec3& anchorB);
 	void AddConstraintHinge(PhysBody3D& bodyA, PhysBody3D& bodyB, const vec3& anchorA, const vec3& anchorB, const vec3& axisS, const vec3& axisB, bool disable_collision = false);
+	btCollisionShape* colShape;
 
 private:
 
@@ -54,6 +55,8 @@ private:
 	p2List<PhysVehicle3D*> vehicles;
 
 	btVector3 gravedadActual;
+
+	
 };
 
 class DebugDrawer : public btIDebugDraw

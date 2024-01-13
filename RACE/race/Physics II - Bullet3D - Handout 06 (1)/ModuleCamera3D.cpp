@@ -115,7 +115,7 @@ update_status ModuleCamera3D::Update(float dt)
 		);
 
 		vec3 playerPosition = App->player->vehicle->GetPosition();
-		vec3 offset = vec3(0.0f, 5.0f, -10.0f); // Modificar la posicion de la camara
+		vec3 offset = vec3(0.0f, 5.0f, -15.0f); // Modificar la posicion de la camara
 
 		Position = playerPosition + playerRotation * offset;
 
