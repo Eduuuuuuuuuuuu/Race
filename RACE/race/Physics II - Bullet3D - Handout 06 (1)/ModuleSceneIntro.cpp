@@ -54,10 +54,12 @@ bool ModuleSceneIntro::Start()
 	metaColor.Scale(5, 5, 20);
 	metaColor.SetPos(30, 3, 6);
 
-	cube3 = App->physics->AddBody(Cube(30, 5, 8), 0.0);
-	cube3->SetPos(15, 1, 0);
+	cube3 = App->physics->AddBody(Cube(30, 5, 8), 0.0);   //cube3 = circuit platform
+	cube3->SetPos(15, 1, 0); 
 	cube3 = App->physics->AddBody(Cube(30, 5, 8), 0.0);
 	cube3->SetPos(42, 1, 2);
+	wall = App->physics->AddBody(Cube(2, 10, 10), 0.0);
+	wall->SetPos(58, 1, 2);
 	cube3 = App->physics->AddBody(Cube(8, 5, 30), 0.0);
 	cube3->SetPos(53, 1, 20);
 	cube3 = App->physics->AddBody(Cube(15, 5, 8), 0.0);
@@ -107,14 +109,14 @@ update_status ModuleSceneIntro::Update(float dt)
 	a.Render();
 
 	//path
-	for (int i = 0; i < 5; i++)
-	{
-		Cube c(10, 2, 8);
+	//for (int i = 0; i < 5; i++)
+	//{
+	//	Cube c(10, 2, 8);
 
-		c.SetPos(i * 5, 1, 0);
-		c.color = { 200,200,200 };
-		c.Render();
-	}
+	//	c.SetPos(i * 5, 1, 0);
+	//	c.color = { 200,200,200 };
+	//	c.Render();
+	//}
 
 	//Circuit
 	Cube q(30, 5, 8);
