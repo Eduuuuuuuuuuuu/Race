@@ -66,7 +66,7 @@ bool ModuleSceneIntro::Start()
 	cube3->SetPos(32, 1, 34);
 	cube3 = App->physics->AddBody(Cube(18, 5, 8), 0.0);
 	cube3->SetPos(25, 1, 42);
-	cube3 = App->physics->AddBody(Cube(8, 4, 15), 0.0);
+	cube3 = App->physics->AddBody(Cube(8, 4, 16), 0.0);
 	cube3->SetPos(17, 1, 30);
 	cube3 = App->physics->AddBody(Cube(15, 3, 8), 0.0);
 	cube3->SetPos(10, 1, 25);
@@ -116,6 +116,63 @@ update_status ModuleSceneIntro::Update(float dt)
 		c.Render();
 	}
 
+	//Circuit
+	Cube q(30, 5, 8);
+	q.SetPos(15, 1, 0);
+	q.color = { 200,200,200 };
+	q.Render();
+
+	Cube q1(30, 5, 8);
+	q1.SetPos(42, 1, 2);
+	q1.color = { 200,200,200 };
+	q1.Render();
+
+	Cube q2(8, 5, 30);
+	q2.SetPos(53, 1, 20);
+	q2.color = { 200,200,200 };
+	q2.Render();
+
+	Cube q3(15, 5, 8);
+	q3.SetPos(42, 1, 28);
+	q3.color = { 200,200,200 };
+	q3.Render();
+
+	Cube q4(8, 5, 20);
+	q4.SetPos(32, 1, 34);
+	q4.color = { 200,200,200 };
+	q4.Render();
+	
+	Cube q5(18, 5, 8);
+	q5.SetPos(25, 1, 42);
+	q5.color = { 200,200,200 };
+	q5.Render();
+	
+	Cube q6(8, 4, 15);
+	q6.SetPos(17, 1, 30);
+	q6.color = { 200,200,200 };
+	q6.Render();
+
+	Cube q7(15, 3, 8);
+	q7.SetPos(10, 1, 25);
+	q7.color = { 200,200,200 };
+	q7.Render();
+	
+	Cube q8(8, 3, 20);
+	q8.SetPos(5, 1, 38);
+	q8.color = { 200,200,200 };
+	q8.Render();
+
+	Cube q9(40, 3, 8);
+	q9.SetPos(-10, 1, 52);
+	q9.color = { 200,200,200 };
+	q9.Render();
+	
+	Cube q10(8, 3, 40);
+	q10.SetPos(-30, 1, 37);
+	q10.color = { 200,200,200 };
+	q10.Render();
+	
+	
 	//checkpoints
 
 	d.color = { 0, 255, 0 };
