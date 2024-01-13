@@ -153,7 +153,7 @@ update_status ModulePlayer::Update(float dt)
 
 	if(App->input->GetKey(SDL_SCANCODE_DOWN) == KEY_REPEAT)
 	{
-		/*brake = BRAKE_POWER;*/
+		brake = BRAKE_POWER;
 		deacceleration = MAX_DEACCELERATION;
 	}
 
@@ -191,17 +191,18 @@ update_status ModulePlayer::Update(float dt)
 		isBoosting = false;
 	}
 
-	vehicle->ApplyEngineForce(acceleration);
+	vehicle->ApplyEngineForce(acceleration + deacceleration);
 	vehicle->Turn(turn);
 	
 	if (vehicle->GetKmh() <= 0)
 	{
-		vehicle->ApplyEngineForce(deacceleration);
+		/*vehicle->ApplyEngineForce(deacceleration);*/
+		vehicle->Brake(0);
 	}
-	if (vehicle->GetKmh() >= 0)
+	if (vehicle->GetKmh() > 5)
 	{
-		vehicle->Brake(brake);
-		vehicle->Brake(friccion);
+		int km = vehicle->GetKmh();
+		vehicle->Brake(friccion + brake);
 	}
 	
 
@@ -211,7 +212,7 @@ update_status ModulePlayer::Update(float dt)
 	sprintf_s(title, "%.1f Km/h", vehicle->GetKmh());
 	App->window->SetTitle(title);
 
-	if (App->scene_intro->sensor_cube1->GetPosition().y == 1000 && App->scene_intro->sensor_cube2->GetPosition().y == 1000 && App->scene_intro->sensor_cube3->GetPosition().y == 1000 && meta == true)
+	if (App->scene_intro->sensor_cube1->GetPosition().y == 1000 && App->scene_intro->sensor_cube2->GetPosition().y == 1000 && App->scene_intro->sensor_cube3->GetPosition().y == 1000)
 	{
 		if (lap == 2) lap = 3;
 		if (lap == 1) lap = 2;
@@ -229,10 +230,9 @@ void ModulePlayer::OnCollision(PhysBody3D* body1, PhysBody3D* body2)
 {
 	// Randomly teleport the sensor cube around 1st quadrant
 	
-	if (body2 == App->scene_intro->sensor_cube1) App->scene_intro->sensor_cube1->SetPos(1000, 1000, 1000); meta = false;
+	if (body2 == App->scene_intro->sensor_cube1) App->scene_intro->sensor_cube1->SetPos(1000, 1000, 1000);
 	if (body2 == App->scene_intro->sensor_cube2) App->scene_intro->sensor_cube2->SetPos(1000, 1000, 1000);
 	if (body2 == App->scene_intro->sensor_cube3) App->scene_intro->sensor_cube3->SetPos(1000, 1000, 1000);
-	if (body2 == App->scene_intro->meta) meta = true;
 	/*if (body2 == App->scene_intro.);*/
 }
 
