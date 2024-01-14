@@ -23,9 +23,6 @@ bool ModuleSceneIntro::Start()
 
 	/*Create sensor cube (will trigger with car)*/
 
-	App->audio->PlayMusic("Assets/Audio/crowd_noise.mp3", 10.0f);
-
-
 	meta = App->physics->AddBody(Cube(5, 5, 20), 0.0);
 	meta->SetAsSensor(true);
 	meta->SetPos(30, 3, 6);

@@ -49,7 +49,6 @@ public:
 	PhysBody3D* sensor_cube1;
 	PhysBody3D* sensor_cube2;
 	PhysBody3D* sensor_cube3;
-	
 
 	Cube d;
 	Cube aa;

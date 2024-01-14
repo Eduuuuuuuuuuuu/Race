@@ -20,7 +20,11 @@ ModulePlayer::~ModulePlayer()
 bool ModulePlayer::Start()
 {
 	LOG("Loading player");
-
+	App->audio->PlayMusic("Assets/Audio/risk_song_cut.wav", 2.0f);
+	sfx_crowd = App->audio->LoadFx("Assets/Audio/crowd_noise.wav");
+	sfx_engine = App->audio->LoadFx("Assets/Audio/engine1_on.wav");
+	sfx_nitro = App->audio->LoadFx("Assets/Audio/nitro.wav");
+	App->audio->PlayFx(sfx_crowd);
 	// Car properties ----------------------------------------
 	car.chassis_size.Set(2, 1.5, 4);
 	car.chassis_offset.Set(0, 1.5, 0);
@@ -135,6 +139,7 @@ update_status ModulePlayer::Update(float dt)
 	if(App->input->GetKey(SDL_SCANCODE_UP) == KEY_REPEAT)
 	{
 		acceleration = MAX_ACCELERATION;
+		App->audio->PlayFx(sfx_engine);
 	}
 
 	vehicle->SetFriccionn(friccion);
@@ -178,6 +183,8 @@ update_status ModulePlayer::Update(float dt)
 	if (App->input->GetKey(SDL_SCANCODE_F) == KEY_DOWN)
 	{
 		ActivateBoost();
+		App->audio->PlayFx(sfx_nitro);
+
 	}	
 
 	if (isBoosting) {

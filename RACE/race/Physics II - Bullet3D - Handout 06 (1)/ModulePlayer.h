@@ -37,5 +37,8 @@ public:
 
 	vec3 initialPosition;
 
+	unsigned int sfx_nitro = 0;
+	unsigned int sfx_engine = 0;
+	unsigned int sfx_crowd = 0;
 	bool isBoosting;
 };
