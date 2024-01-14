@@ -24,6 +24,8 @@ bool ModulePlayer::Start()
 	sfx_crowd = App->audio->LoadFx("Assets/Audio/crowd_noise.wav");
 	sfx_engine = App->audio->LoadFx("Assets/Audio/engine1_on.wav");
 	sfx_nitro = App->audio->LoadFx("Assets/Audio/nitro.wav");
+	sfx_lose = App->audio->LoadFx("Assets/Audio/lose.wav");
+	sfx_win = App->audio->LoadFx("Assets/Audio/win.wav");
 	App->audio->PlayFx(sfx_crowd);
 	// Car properties ----------------------------------------
 	car.chassis_size.Set(2, 1.5, 4);
@@ -162,10 +164,21 @@ update_status ModulePlayer::Update(float dt)
 		brake = BRAKE_POWER;
 		deacceleration = MAX_DEACCELERATION;
 	}
-
+	if (App->input->GetKey(SDL_SCANCODE_F3) == KEY_REPEAT)
+	{
+		App->audio->PlayFx(sfx_lose);
+	}
+	if (App->input->GetKey(SDL_SCANCODE_F4) == KEY_REPEAT)
+	{
+		App->audio->PlayFx(sfx_win);
+	}
 	if (App->input->GetKey(SDL_SCANCODE_M) == KEY_REPEAT)
 	{
 		car.mass += 10;
+	}
+	if (App->input->GetKey(SDL_SCANCODE_N) == KEY_REPEAT)
+	{
+		car.mass -= 10;
 	}
 	if (vehicle->GetKmh() < 0)
 	{

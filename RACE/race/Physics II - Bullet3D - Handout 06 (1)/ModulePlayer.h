@@ -40,5 +40,7 @@ public:
 	unsigned int sfx_nitro = 0;
 	unsigned int sfx_engine = 0;
 	unsigned int sfx_crowd = 0;
+	unsigned int sfx_lose = 0;
+	unsigned int sfx_win = 0;
 	bool isBoosting;
 };
