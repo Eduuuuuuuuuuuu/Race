@@ -3,6 +3,7 @@
 #include "ModuleSceneIntro.h"
 #include "Primitive.h"
 #include "PhysBody3D.h"
+#include "ModuleAudio.h"
 
 ModuleSceneIntro::ModuleSceneIntro(Application* app, bool start_enabled) : Module(app, start_enabled)
 {
@@ -21,8 +22,6 @@ bool ModuleSceneIntro::Start()
 	App->camera->LookAt(vec3(0, 0, 0));
 
 	/*Create sensor cube (will trigger with car)*/
-
-
 
 	meta = App->physics->AddBody(Cube(5, 5, 20), 0.0);
 	meta->SetAsSensor(true);
@@ -60,35 +59,64 @@ bool ModuleSceneIntro::Start()
 	cube3->SetPos(42, 1, 2);
 	wall = App->physics->AddBody(Cube(2, 10, 10), 0.0);
 	wall->SetPos(58, 1, 2);
-	cube3 = App->physics->AddBody(Cube(8, 5, 30), 0.0);
+	cube3 = App->physics->AddBody(Cube(14, 5, 34), 0.0);
 	cube3->SetPos(53, 1, 20);
 	cube3 = App->physics->AddBody(Cube(15, 5, 8), 0.0);
 	cube3->SetPos(42, 1, 28);
+	wall = App->physics->AddBody(Cube(2, 10, 8), 0.0);
+	wall->SetPos(27, 1, 28);
 	cube3 = App->physics->AddBody(Cube(8, 5, 20), 0.0);
 	cube3->SetPos(32, 1, 34);
-	cube3 = App->physics->AddBody(Cube(18, 5, 8), 0.0);
-	cube3->SetPos(25, 1, 42);
+	cube3 = App->physics->AddBody(Cube(24, 5, 18), 0.0);
+	cube3->SetPos(25, 1, 45);
+	wall = App->physics->AddBody(Cube(10, 10, 2), 0.0);
+	wall->SetPos(27, 1, 47);
 	cube3 = App->physics->AddBody(Cube(8, 4, 16), 0.0);
 	cube3->SetPos(17, 1, 30);
+	wall = App->physics->AddBody(Cube(4, 10, 10), 0.0);
+	wall->SetPos(11, 1, 34);
 	cube3 = App->physics->AddBody(Cube(15, 3, 8), 0.0);
 	cube3->SetPos(10, 1, 25);
+	wall = App->physics->AddBody(Cube(2, 10, 6), 0.0);
+	wall->SetPos(1.5, 1, 25);
+	wall = App->physics->AddBody(Cube(6, 10, 2), 0.0);
+	wall->SetPos(4, 1, 20);
 	cube3 = App->physics->AddBody(Cube(8, 3, 20), 0.0);
 	cube3->SetPos(5, 1, 38);
 	cube3 = App->physics->AddBody(Cube(40, 3, 8), 0.0);
 	cube3->SetPos(-10, 1, 52);
-	cube3 = App->physics->AddBody(Cube(8, 3, 40), 0.0);
-	cube3->SetPos(-30, 1, 37);
-	
-	// pelota
-	ball = App->physics->AddBody(Sphere(2), 1.0);
-	  // Obtén el puntero al btRigidBody desde el PhysBody3D
+	cube3 = App->physics->AddBody(Cube(30, 3, 40), 0.0);
+	cube3->SetPos(-35, 1, 42);
+	wall = App->physics->AddBody(Cube(20, 8, 2), 0.0);
+	wall->SetPos(-15, 1, 47);
+	wall = App->physics->AddBody(Cube(26, 8, 2), 0.0);
+	wall->SetPos(-3, 1, 57);
+	cube3 = App->physics->AddBody(Cube(8, 3, 8), 0.0);
+	cube3->SetPos(-35, 1, 18);
 
-	// Establece el coeficiente de fricción para la pelota
-	float friction = 100.0f;  // Ajusta este valor según sea necesario
-	
+	stadium = App->physics->AddBody(Cube(150, 5, 1), 0.0);
+	stadium->SetPos(10, 2 , 70 );
+	stadium = App->physics->AddBody(Cube(150, 5, 1), 0.0);
+	stadium->SetPos(10, 2, -25);
+	stadium = App->physics->AddBody(Cube(1, 5, 95), 0.0);
+	stadium->SetPos(85, 2, 22);
+	stadium = App->physics->AddBody(Cube(1, 5, 95), 0.0);
+	stadium->SetPos(-65, 2, 22);
 
-	ball->SetFriction(friction); // Asigna el cuerpo rígido a tu objeto PhysBody3D
-	ball->SetPos(-20, 1, -10);
+	for (int i = 0; i < 10; i++)
+	{
+		stadium = App->physics->AddBody(Cube(150,2, 3), 0.0);
+		stadium->SetPos(10, 4 + 2 * i, 73 + i * 2);
+		stadium = App->physics->AddBody(Cube(150, 2, 3), 0.0);
+		stadium->SetPos(10, 4 + 2 * i, -28 + i * -2);
+		stadium = App->physics->AddBody(Cube(3, 2, 95), 0.0);
+		stadium->SetPos(88 + i * 2, 4 + 2 * i, 22);
+		stadium = App->physics->AddBody(Cube(3, 2, 95), 0.0);
+		stadium->SetPos(-68 + i * -2, 4 + 2 * i, 22);
+	}
+;
+	ball = App->physics->AddBody(Sphere(1), 1.0);
+	ball->SetPos(15, 7, 0);
 
 	return ret;
 }
@@ -104,7 +132,6 @@ bool ModuleSceneIntro::CleanUp()
 // Update
 update_status ModuleSceneIntro::Update(float dt)
 {
-	
 	//plano 
 	Plane p(0, 1, 0, 0);
 	p.axis = true;
@@ -140,7 +167,7 @@ update_status ModuleSceneIntro::Update(float dt)
 	q1.color = { 200,200,200 };
 	q1.Render();
 
-	Cube q2(8, 5, 30);
+	Cube q2(14, 5, 34);
 	q2.SetPos(53, 1, 20);
 	q2.color = { 200,200,200 };
 	q2.Render();
@@ -155,8 +182,8 @@ update_status ModuleSceneIntro::Update(float dt)
 	q4.color = { 200,200,200 };
 	q4.Render();
 	
-	Cube q5(18, 5, 8);
-	q5.SetPos(25, 1, 42);
+	Cube q5(24, 5, 18);
+	q5.SetPos(25, 1, 45);
 	q5.color = { 200,200,200 };
 	q5.Render();
 	
@@ -180,48 +207,112 @@ update_status ModuleSceneIntro::Update(float dt)
 	q9.color = { 200,200,200 };
 	q9.Render();
 	
-	Cube q10(8, 3, 40);
-	q10.SetPos(-30, 1, 37);
+	Cube q10(30, 3, 40);
+	q10.SetPos(-35, 1, 42);
 	q10.color = { 200,200,200 };
 	q10.Render();
 
+	Cube q11(8, 3, 8);   //finish line
+	q11.SetPos(-35, 1, 18);
+	q11.color = { 200,0,0 };
+	q11.Render();
+
+	//walls
+	Cube e(20, 8, 2);
+	e.SetPos(-15, 1, 47);
+	e.color = { 200,200,0 };
+	e.Render();
+
+	Cube e1(26, 8, 2);
+	e1.SetPos(-3, 1, 57);
+	e1.color = { 200,200,0 };
+	e1.Render();
+	
+	Cube e2(2, 10, 6);
+	e2.SetPos(1.5, 1, 25);
+	e2.color = { 200,200,0 };
+	e2.Render();
+
+	Cube e3(6, 10, 2);
+	e3.SetPos(4, 1, 20);
+	e3.color = { 200,200,0 };
+	e3.Render();
+
+	Cube e4(4, 10, 10);
+	e4.SetPos(11, 1, 34);
+	e4.color = { 200,200,0 };
+	e4.Render();
+	
+	Cube e5(10, 10, 2);
+	e5.SetPos(27, 1, 47);
+	e5.color = { 200,200,0 };
+	e5.Render();
+
+	Cube e6(2, 10, 8);
+	e6.SetPos(27, 1, 28);
+	e6.color = { 200,200,0 };
+	e6.Render();
+	
+	Cube e7(2, 10, 10);
+	e7.SetPos(58, 1, 2);
+	e7.color = { 200,200,0 };
+	e7.Render();
+	//limits border
+	Cube s(150, 5, 1);
+	s.SetPos(10, 2, 70);
+	s.color = { 65,65,65 };
+	s.Render();
+
+	Cube s1(150, 5, 1);
+	s1.SetPos(10, 2, -25);
+	s1.color = { 65,65,65 };
+	s1.Render();
+
+	Cube s2(1, 5, 95);
+	s2.SetPos(85, 2, 22);
+	s2.color = { 65,65,65 };
+	s2.Render();
+
+	Cube s3(1, 5, 95);
+	s3.SetPos(-65, 2, 22);
+	s3.color = { 65,65,65 };
+	s3.Render();
 	//Stadium
 	for (int i = 0; i < 10; i++)
 	{
-		Cube w(150, 1, 1);
+		Cube w(150, 2, 3);
 
-		w.SetPos(10, 4+2*i, 70+i*2);
-		w.color = { 0,200,200 };
+		w.SetPos(10, 4+2*i, 73+i*2);
+		w.color = { 0,100,200 };
 		w.Render();
 	}
 
 	for (int i = 0; i < 10; i++)
 	{
-		Cube w(150, 1, 1);
+		Cube w(150, 2, 3);
 
-		w.SetPos(10, 4 + 2 * i, -25 + i * -2);
+		w.SetPos(10, 4 + 2 * i, -28 + i * -2);
 		w.color = { 0,200,200 };
 		w.Render();
 	}
 
 		for (int i = 0; i < 10; i++)
 	{
-		Cube w(1, 1, 95);
+		Cube w(3, 2, 95);
 
-		w.SetPos(85+i*2, 4+ 2 * i, 22);
+		w.SetPos(88+i*2, 4+ 2 * i, 22);
 		w.color = { 0,200,200 };
 		w.Render();
 	}
 
 		for (int i = 0; i < 10; i++)
 		{
-			Cube w(1, 1, 95);
+			Cube w(3, 2, 95);
 
-			w.SetPos(-65 + i * -2, 4 + 2 * i, 22);
+			w.SetPos(-68 + i * -2, 4 + 2 * i, 22);
 			w.color = { 0,200,200 };
 			w.Render();
 		}
-
 	//checkpoints
 
 	d.color = { 0, 255, 0 };
