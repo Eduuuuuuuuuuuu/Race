@@ -78,7 +78,17 @@ bool ModuleSceneIntro::Start()
 	cube3->SetPos(-10, 1, 52);
 	cube3 = App->physics->AddBody(Cube(8, 3, 40), 0.0);
 	cube3->SetPos(-30, 1, 37);
+	
+	// pelota
+	ball = App->physics->AddBody(Sphere(2), 1.0);
+	  // Obtén el puntero al btRigidBody desde el PhysBody3D
 
+	// Establece el coeficiente de fricción para la pelota
+	float friction = 100.0f;  // Ajusta este valor según sea necesario
+	
+
+	ball->SetFriction(friction); // Asigna el cuerpo rígido a tu objeto PhysBody3D
+	ball->SetPos(-20, 1, -10);
 
 	return ret;
 }
@@ -94,6 +104,7 @@ bool ModuleSceneIntro::CleanUp()
 // Update
 update_status ModuleSceneIntro::Update(float dt)
 {
+	
 	//plano 
 	Plane p(0, 1, 0, 0);
 	p.axis = true;

@@ -42,6 +42,7 @@ public:
 	PhysMotor3D* left_wheel;
 	PhysMotor3D* right_wheel;
 
+	PhysBody3D* ball;
 	PhysBody3D* meta;
 	PhysBody3D* cube3;
 	PhysBody3D* wall;

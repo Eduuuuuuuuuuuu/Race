@@ -59,6 +59,14 @@ void PhysBody3D::SetAsSensor(bool is_sensor)
 	}
 }
 
+void PhysBody3D::SetFriction(float friction)
+{
+	if (body != nullptr)
+	{
+		body->setFriction(friction);
+	}
+}
+
 vec3 PhysBody3D::GetPosition() const
 {
 	if (body == nullptr)

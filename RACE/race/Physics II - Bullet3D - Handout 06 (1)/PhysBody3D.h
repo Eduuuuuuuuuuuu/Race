@@ -21,6 +21,7 @@ public:
 	void SetPos(float x, float y, float z);
 	vec3 GetPosition() const;
 	void SetAsSensor(bool is_sensor);
+	void SetFriction(float friction);
 
 private:
 	

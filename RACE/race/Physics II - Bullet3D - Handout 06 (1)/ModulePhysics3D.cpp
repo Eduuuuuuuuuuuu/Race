@@ -58,6 +58,7 @@ bool ModulePhysics3D::Start()
 	world->setGravity(gravedadActual);
 	vehicle_raycaster = new btDefaultVehicleRaycaster(world);
 
+	
 	// Big plane as ground
 	{
 		colShape = new btStaticPlaneShape(btVector3(0, 1, 0), 0);
@@ -69,12 +70,7 @@ bool ModulePhysics3D::Start()
 		world->addRigidBody(body);
 	}
 
-	// Create a triangular ramp to go from the ground to the path
-	btVector3 vertices[3] = {
-		btVector3(0, 0, 0),
-		btVector3(5, 0, 0),
-		btVector3(2.5, 5, 0) // Adjust the height of the triangle as needed
-	};
+	
 
 	// Create a ramp using a rotated rectangle
 	btCollisionShape* rampShape = new btBoxShape(btVector3(5, 1, 2)); // Adjust the size as needed
@@ -109,7 +105,19 @@ bool ModulePhysics3D::Start()
 		world->addRigidBody(blockBody);
 	}
 		
+	// Crear una pelota con fricción
+	btCollisionShape* ballShape = new btSphereShape(2); // Ajusta el radio según sea necesario
 
+	btTransform ballTransform;
+	ballTransform.setIdentity();
+	ballTransform.setOrigin(btVector3(0, 10, 0)); // Ajusta la posición inicial de la pelota
+
+	btDefaultMotionState* ballMotionState = new btDefaultMotionState(ballTransform);
+	btRigidBody::btRigidBodyConstructionInfo ballRbInfo(1.0f, ballMotionState, ballShape); // Establece una masa diferente de 0.0f
+
+	btRigidBody* ballBody = new btRigidBody(ballRbInfo);
+	ballBody->setFriction(0.5f); // Ajusta el coeficiente de fricción según sea necesario
+	world->addRigidBody(ballBody);
 	return true;
 }
 
