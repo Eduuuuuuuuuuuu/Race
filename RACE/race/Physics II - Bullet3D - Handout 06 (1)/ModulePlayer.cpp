@@ -198,6 +198,7 @@ update_status ModulePlayer::Update(float dt)
 	{
 		/*vehicle->ApplyEngineForce(deacceleration);*/
 		vehicle->Brake(0);
+		vehicle->Brake(friccion);
 	}
 	if (vehicle->GetKmh() > 5)
 	{
