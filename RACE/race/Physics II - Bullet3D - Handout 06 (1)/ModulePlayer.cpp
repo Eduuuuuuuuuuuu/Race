@@ -166,6 +166,10 @@ update_status ModulePlayer::Update(float dt)
 	{
 		car.mass += 10;
 	}
+	if (App->input->GetKey(SDL_SCANCODE_N) == KEY_REPEAT)
+	{
+		car.mass -= 10;
+	}
 	if (vehicle->GetKmh() < 0)
 	{
 		friccion = FRICCION_COEFICIENT * car.mass;

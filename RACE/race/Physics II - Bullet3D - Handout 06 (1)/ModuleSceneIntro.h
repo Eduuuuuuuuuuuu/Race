@@ -50,7 +50,6 @@ public:
 	PhysBody3D* sensor_cube1;
 	PhysBody3D* sensor_cube2;
 	PhysBody3D* sensor_cube3;
-	PhysBody3D* ball;
 
 	Cube d;
 	Cube aa;
