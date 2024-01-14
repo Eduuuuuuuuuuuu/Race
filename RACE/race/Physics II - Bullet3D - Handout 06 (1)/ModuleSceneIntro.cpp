@@ -173,8 +173,44 @@ update_status ModuleSceneIntro::Update(float dt)
 	q10.SetPos(-30, 1, 37);
 	q10.color = { 200,200,200 };
 	q10.Render();
-	
-	
+
+	//Stadium
+	for (int i = 0; i < 10; i++)
+	{
+		Cube w(150, 1, 1);
+
+		w.SetPos(10, 4+2*i, 70+i*2);
+		w.color = { 0,200,200 };
+		w.Render();
+	}
+
+	for (int i = 0; i < 10; i++)
+	{
+		Cube w(150, 1, 1);
+
+		w.SetPos(10, 4 + 2 * i, -25 + i * -2);
+		w.color = { 0,200,200 };
+		w.Render();
+	}
+
+		for (int i = 0; i < 10; i++)
+	{
+		Cube w(1, 1, 95);
+
+		w.SetPos(85+i*2, 4+ 2 * i, 22);
+		w.color = { 0,200,200 };
+		w.Render();
+	}
+
+		for (int i = 0; i < 10; i++)
+		{
+			Cube w(1, 1, 95);
+
+			w.SetPos(-65 + i * -2, 4 + 2 * i, 22);
+			w.color = { 0,200,200 };
+			w.Render();
+		}
+
 	//checkpoints
 
 	d.color = { 0, 255, 0 };
