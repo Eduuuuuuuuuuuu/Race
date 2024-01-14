@@ -106,6 +106,10 @@ bool ModuleSceneIntro::Start()
 		stadium = App->physics->AddBody(Cube(3, 2, 95), 0.0);
 		stadium->SetPos(-68 + i * -2, 4 + 2 * i, 22);
 	}
+;
+	ball = App->physics->AddBody(Sphere(1), 1.0);
+	ball->SetPos(15, 7, 0);
+
 	return ret;
 }
 
