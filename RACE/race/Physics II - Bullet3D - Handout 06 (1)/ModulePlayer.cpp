@@ -164,9 +164,10 @@ update_status ModulePlayer::Update(float dt)
 		brake = BRAKE_POWER;
 		deacceleration = MAX_DEACCELERATION;
 	}
-	if (App->input->GetKey(SDL_SCANCODE_F3) == KEY_REPEAT)
+	if (App->input->GetKey(SDL_SCANCODE_F3) == KEY_REPEAT || win == true)
 	{
 		App->audio->PlayFx(sfx_lose);
+		win = false;
 	}
 	if (App->input->GetKey(SDL_SCANCODE_F4) == KEY_REPEAT)
 	{
@@ -257,6 +258,7 @@ void ModulePlayer::OnCollision(PhysBody3D* body1, PhysBody3D* body2)
 	if (body2 == App->scene_intro->sensor_cube3) App->scene_intro->sensor_cube3->SetPos(1000, 1000, 1000); 
 	
 	if (body2 == App->scene_intro->meta) meta = true;
+	if (body2 == App->scene_intro->cube9) win = true;
 }
 
 void ModulePlayer::ActivateBoost() {

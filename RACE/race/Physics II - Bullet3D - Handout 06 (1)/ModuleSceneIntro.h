@@ -45,6 +45,7 @@ public:
 	PhysBody3D* ball;
 	PhysBody3D* meta;
 	PhysBody3D* cube3;
+	PhysBody3D* cube9;
 	PhysBody3D* wall;
 	PhysBody3D* stadium;
 	PhysBody3D* sensor_cube1;

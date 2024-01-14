@@ -102,8 +102,8 @@ bool ModuleSceneIntro::Start()
 	wall->SetPos(-15, 1, 47);
 	wall = App->physics->AddBody(Cube(26, 8, 2), 0.0);
 	wall->SetPos(-3, 1, 57);
-	cube3 = App->physics->AddBody(Cube(8, 3, 8), 0.0);
-	cube3->SetPos(-35, 1, 18);
+	cube9 = App->physics->AddBody(Cube(8, 3, 8), 0.0);
+	cube9->SetPos(-35, 1, 18);
 
 	stadium = App->physics->AddBody(Cube(150, 5, 1), 0.0);
 	stadium->SetPos(10, 2 , 70 );

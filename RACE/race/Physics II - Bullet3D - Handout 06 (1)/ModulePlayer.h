@@ -26,6 +26,7 @@ public:
 	void ActivateBoost();
 	int lap = 0;
 	bool meta = false;
+	bool win = false;
 public:
 	VehicleInfo car;
 	PhysVehicle3D* vehicle;
