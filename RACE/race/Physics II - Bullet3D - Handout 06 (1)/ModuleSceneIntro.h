@@ -3,6 +3,7 @@
 #include "p2DynArray.h"
 #include "Globals.h"
 #include "Primitive.h"
+#include "Bullet/include/btBulletDynamicsCommon.h"
 
 #define MAX_SNAKE 2
 
@@ -19,7 +20,6 @@ public:
 	update_status Update(float dt);
 	bool CleanUp();
 
-	void OnCollision(PhysBody3D* body1, PhysBody3D* body2);
 
 public:
 	/*
@@ -50,10 +50,12 @@ public:
 	PhysBody3D* sensor_cube1;
 	PhysBody3D* sensor_cube2;
 	PhysBody3D* sensor_cube3;
-	PhysBody3D* ball;
+	
+	btRigidBody* ballBody;
 
 	Cube d;
 	Cube aa;
 	Cube aaa;
 	Cube metaColor;
+	bool restart = false;
 };

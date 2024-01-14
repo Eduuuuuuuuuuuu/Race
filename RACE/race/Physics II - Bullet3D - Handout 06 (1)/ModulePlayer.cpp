@@ -107,7 +107,7 @@ bool ModulePlayer::Start()
 	/*vehicle->GetPosition();*/
 
 	return true;
-}
+}	
 
 // Unload assets
 bool ModulePlayer::CleanUp()
@@ -121,7 +121,7 @@ bool ModulePlayer::CleanUp()
 update_status ModulePlayer::Update(float dt)
 {
 
-	if (App->input->GetKey(SDL_SCANCODE_R) == KEY_DOWN)
+	if (App->input->GetKey(SDL_SCANCODE_R) == KEY_DOWN || App->scene_intro->restart == true)
 	{
 		btVector3 cero(0, 0, 0);
 
@@ -129,6 +129,7 @@ update_status ModulePlayer::Update(float dt)
 		vehicle->body->setLinearVelocity(cero);
 
 		vehicle->SetPos(-30, 4, 0);
+		App->scene_intro->restart = false;
 	}
 
 	/*vec3 pos = GetPosition();*/

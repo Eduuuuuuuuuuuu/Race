@@ -59,16 +59,7 @@ bool ModulePhysics3D::Start()
 	vehicle_raycaster = new btDefaultVehicleRaycaster(world);
 
 	
-	// Big plane as ground
-	{
-		colShape = new btStaticPlaneShape(btVector3(0, 1, 0), 0);
-
-		btDefaultMotionState* myMotionState = new btDefaultMotionState();
-		btRigidBody::btRigidBodyConstructionInfo rbInfo(0.0f, myMotionState, colShape);
-
-		btRigidBody* body = new btRigidBody(rbInfo);
-		world->addRigidBody(body);
-	}
+	
 
 	
 
@@ -105,19 +96,7 @@ bool ModulePhysics3D::Start()
 		world->addRigidBody(blockBody);
 	}
 		
-	// Crear una pelota con fricción
-	btCollisionShape* ballShape = new btSphereShape(2); // Ajusta el radio según sea necesario
-
-	btTransform ballTransform;
-	ballTransform.setIdentity();
-	ballTransform.setOrigin(btVector3(0, 10, 0)); // Ajusta la posición inicial de la pelota
-
-	btDefaultMotionState* ballMotionState = new btDefaultMotionState(ballTransform);
-	btRigidBody::btRigidBodyConstructionInfo ballRbInfo(1.0f, ballMotionState, ballShape); // Establece una masa diferente de 0.0f
-
-	btRigidBody* ballBody = new btRigidBody(ballRbInfo);
-	ballBody->setFriction(0.5f); // Ajusta el coeficiente de fricción según sea necesario
-	world->addRigidBody(ballBody);
+	
 	return true;
 }
 

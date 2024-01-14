@@ -18,6 +18,17 @@ bool ModuleSceneIntro::Start()
 	LOG("Loading Intro assets");
 	bool ret = true;
 
+	// Big plane as ground
+	{
+		btCollisionShape* colShape = new btStaticPlaneShape(btVector3(0, 1, 0), 0);
+
+		btDefaultMotionState* myMotionState = new btDefaultMotionState();
+		btRigidBody::btRigidBodyConstructionInfo rbInfo(0.0f, myMotionState, colShape);
+
+		btRigidBody* body = new btRigidBody(rbInfo);
+		App->physics->world->addRigidBody(body);
+	}
+
 	App->camera->Move(vec3(1.0f, 10.0f, -20.0f));
 	App->camera->LookAt(vec3(0, 0, 0));
 
@@ -115,8 +126,23 @@ bool ModuleSceneIntro::Start()
 		stadium->SetPos(-68 + i * -2, 4 + 2 * i, 22);
 	}
 ;
-	ball = App->physics->AddBody(Sphere(1), 1.0);
-	ball->SetPos(15, 7, 0);
+	
+
+	// Crear una pelota con fricción
+	btCollisionShape* ballShape = new btSphereShape(1.5); // Ajusta el radio según sea necesario
+
+	btTransform ballTransform;
+	ballTransform.setIdentity();
+	ballTransform.setOrigin(btVector3(0, 10, 0)); // Ajusta la posición inicial de la pelota
+
+	btDefaultMotionState* ballMotionState = new btDefaultMotionState(ballTransform);
+	btRigidBody::btRigidBodyConstructionInfo ballRbInfo(1.0f, ballMotionState, ballShape); // Establece una masa diferente de 0.0f
+
+	ballBody = new btRigidBody(ballRbInfo);
+	ballBody->setFriction(0.5f); // Ajusta el coeficiente de fricción según sea necesario
+	App->physics->world->addRigidBody(ballBody);
+
+
 
 	return ret;
 }
@@ -352,11 +378,40 @@ update_status ModuleSceneIntro::Update(float dt)
 	metaColor.color = { 0, 255, 0 };
 	metaColor.Render();
 
+	btTransform transform;
+	ballBody->getMotionState()->getWorldTransform(transform);
+
+	btVector3 position = transform.getOrigin();
+
+	// Ahora 'position' contiene las coordenadas x, y, z de la posición actual de ballBody
+	
+	float y = position.getY();
+	float z = position.getZ();
+	
+	if (y < 2)
+	{
+		restart = true;
+		float newX = 0;
+		float newY = 10;
+		float newZ = 0;
+
+		ballBody->setLinearVelocity(btVector3(0, 0, 0));
+		ballBody->setAngularVelocity(btVector3(0, 0, 0));
+
+		btTransform newTransform;
+		newTransform.setIdentity();
+		newTransform.setOrigin(btVector3(newX, newY, newZ));
+
+		// Establecer la nueva transformación para el MotionState
+		ballBody->getMotionState()->setWorldTransform(newTransform);
+
+		// Notificar al mundo de física que la transformación ha cambiado
+		ballBody->setWorldTransform(newTransform);
+	}
+		
 
 	return UPDATE_CONTINUE;
 }
 
-void ModuleSceneIntro::OnCollision(PhysBody3D* body1, PhysBody3D* body2)
-{
-}
+
 
